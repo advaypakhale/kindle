@@ -68,6 +68,14 @@ reaches calibre-web on the homelab over the tailnet
 (`http://homelab:8083/opds`). Calibre's wireless device connection does not
 work through that proxy.
 
+## Sleep screen
+
+KOReader shows a random image from `/mnt/us/screensaver` on sleep
+(`screensaver_type = "random_image"`). The images are the 20 stock sleep
+screens from `/usr/share/blanket/screensaver`, copied from the rootfs backup
+into `dl/screensaver` and pushed to the device. They are Amazon's artwork and
+are not in git.
+
 ## Not in git
 
 `backup/` holds gzipped images of `mmcblk0p1` (rootfs), `mmcblk0p2` and
