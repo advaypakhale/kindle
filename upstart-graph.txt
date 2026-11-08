@@ -1,0 +1,101 @@
+acxmgrd: start on framework_ready stop on stopping framework 
+appmgrd: start on started lab126 stop on stopping lab126 
+archive: start on started lab126 stop on stopping lab126 
+battery: start on display_ready and mounted_userstore 
+chroot: start on framework_ready 
+clickstream_logging: start on framework_ready 
+cmd: start on started lab126 stop on stopping lab126 
+console: start on started system 
+contentpack_fonts_dependency: start on started lab126_gui stop on stopping lab126_gui 
+contentpackd: start on started lab126_gui stop on stopping lab126_gui 
+cron: start on started system stop on stopping system 
+dbus: start on devcap_ready stop on stopping system_setup 
+demd: start on dbus_ready stop on stopping lab126 
+devcap: start on started system_setup 
+deviced: start on started powerd stop on stopping powerd 
+display: start on mounted_varLocal and loaded_modules_dependencies 
+dmld: start on framework_ready stop on stopping framework 
+dpmd: start on started lab126 stop on stopping lab126 
+dynconfig: start on started lab126 stop on stopping lab126 
+early_progress: start on display_ready and devcap_ready stop on starting langpicker 
+fastmetrics: start on framework_ready stop on stopping framework 
+ffsd: start on (langpicker_ready or start-asr) stop on stopping lab126 
+filesystems: start on started system and loaded_fuse and started syslog 
+filesystems_keys: start on started filesystems stop on stopping filesystems 
+filesystems_nh: start on started filesystems_keys stop on stopping filesystems 
+filesystems_setup: start on started filesystems_userstore and started filesystems_var_local stop on stopping filesystems 
+filesystems_userstore: start on started filesystems_var_local # and display_ready stop on stopping filesystems 
+filesystems_var_local: start on started filesystems_keys stop on stopping filesystems 
+framework: start on contentpack_font_ready stop on stopping lab126_gui 
+framework_setup: start on started framework stop on stopping framework 
+fuelgauge: start on started filesystems 
+home_wait: start on dbus_ready 
+iohwlogs: start on started filesystems_var_local 
+kb: start on started lab126_gui stop on stopping lab126_gui 
+kfxreader: start on started lab126_gui stop on stopping lab126_gui start on framework_ready stop on stopping x stop on stopping framework 
+kfxview: start on started lab126_gui stop on stopping lab126_gui start on framework_ready stop on stopping x stop on stopping framework 
+kindle: start on started poll_daemons and started kb and started pillow and started acxmgrd and started cmd 
+kmc: start on framework_ready stop on stopping framework 
+koreader-autostart: start on started lab126_gui 
+lab126: start on started system_setup_after_shpm and started demd stop on stopping dbus or ota-update 
+lab126_gui: start on n_ready and langpicker_ready stop on stopping x or ota-update 
+lab126_gui_monitor: start on (stopped kb RESULT!=ok) or (stopped framework RESULT!=ok) or (stopped framework_setup RESULT!=ok) stop on stopping x 
+lab126_gui_setup: start on framework_ready and started kb and started pillow 
+langpicker: start on x_setup_ready and blanket_loaded_langpicker stop on stopping x 
+lipcd: start on started dbus stop on stopping dbus or ota-update 
+mcsd: start on started wand stop on stopping wand 
+migrate_db: start on migrate_DB stop on stopping filesystems 
+modules: start on mounted_fs_loopbacks 
+monitor_wand_threads: start on started wand stop on stopping lab126 
+n_setup: start on mounted_nh stop on stopping filesystems_nh 
+network: start on started system stop on stopping system 
+ota-update: 
+otaupd: start on started lab126 stop on stopping lab126 
+otav3: start on started lab126 stop on stopping lab126 
+perfd: start on dbus_ready stop on stopping lab126 
+phd: start on started cmd stop on stopping cmd 
+pillow: start on started lab126_gui stop on stopping lab126_gui 
+poll_daemons: start on framework_ready stop on stopping framework 
+powerd: start on started lab126 stop on stopping lab126 
+prereg: start on mounted_varLocal stop on stopping filesystems 
+printklogs: start on started filesystems_var_local 
+rcm: start on started lab126 stop on stopping lab126 
+recevent: start on started system 
+scanner: start on framework_ready stop on stopping framework 
+shutdown: start on runlevel [06] 
+splash: start on start_splash stop on stopping lab126_gui 
+sshd: start on started system stop on (stopping system or ota-update) 
+stackdumpd: start on started lab126 stop on stopping lab126 
+stored: start on framework_ready stop on stopping x stop on stopping framework 
+syslog: start on started system 
+system: start on startup 
+system_cramfs_loopbacks: start on started system and started syslog stop on stopping system 
+system_monitor: start on (stopped modules RESULT!=ok) or (stopped display RESULT!=ok) or (stopped battery RESULT!=ok) or (stopped prereg RESULT!=ok) or (stopped filesystems RESULT!=ok) or (stopped filesystems_var_local RESULT!=ok) or (stopped filesystems_userstore RESULT!=ok) or (stopped filesystems_keys RESULT!=ok) or (stopped filesystems_setup RESULT!=ok) or (stopped network RESULT!=ok) or (stopped system) 
+system_setup: start on battery_ready and loaded_touch and ( loaded_ppp_async or loaded_cdc_ncm ) and ( loaded_whitney_button or loaded_mxc_keyb or loaded_fakekey ) and started filesystems_setup 
+system_setup_after_shpm: start on started system_setup stop on stopping filesystems 
+tailscale: start on started wifid stop on stopping wifid 
+testd: start on started lab126 stop on stopping lab126 
+tmd: start on started cmd stop on stopping cmd 
+tmpfs_scan: start on tmpfs_scan 
+todo: start on started lab126 stop on stopping lab126 
+touch: start on mounted_varLocal and loaded_modules_dependencies 
+usb_audio_setup: start on started deviced and lipcd_started stop on (stopping deviced or stopping lipcd) 
+usbnet-autostart: start on (started volumd and started usbnetd) stop on stopping volumd 
+usbnet-preinit: start on starting volumd stop on (stopped volumd or ota-update) 
+usbnet: start on started volumd stop on (stopping volumd or ota-update) 
+usbnetd: start on started lab126 stop on stopping lab126 
+vnc: start on lxinit_ready stop on stopping x or ota-update 
+volumd: start on started lab126 stop on stopping lab126 
+wand: stop on stopping lab126 
+wandwrapper: start on started lab126 
+webreader: start on contentpack_font_ready stop on stopping lab126_gui 
+wfmdelete: 
+wfmupdate: 
+wifid: start on started lab126 stop on stopping lab126 
+wifim: stop on stopping lab126 
+wifis: stop on stopping lab126 
+x: start on started dbus and started dynconfig stop on stopping dbus 
+x_cleanup: start on langpicker_ready 
+x_monitor: start on (stopped x RESULT!=ok) or (stopped x_setup RESULT!=ok) or (stopped langpicker RESULT!=ok) stop on stopping dbus 
+x_setup: start on lxinit_ready stop on stopping x 
+xasr: start on start-xasr stop on stopping stop-xasr 

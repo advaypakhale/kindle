@@ -1,0 +1,9 @@
+# Amazon firmware, third-party downloads, device images and personal data
+dl/
+x/
+backup/
+backup-*/
+koconf/
+kindle_key
+kindle_key.pub
+books/
