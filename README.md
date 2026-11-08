@@ -30,6 +30,12 @@ removed and Tailscale for remote access.
   firewall drops unsolicited UDP and otherwise forces DERP.
 - `device/etc/upstart/firewall.conf` drops SSH and calibre's wireless port on
   `wlan0`. SSH is reachable over the tailnet only.
+- `device/src/blanketd.c` stands in for the removed `com.lab126.blanket` LIPC
+  service. `powerd` reads blanket's `load` property before acting on the power
+  button and treats an error as "boot splash still showing", so without it the
+  device never sleeps. `scripts/build.sh` cross-compiles it with Zig into
+  `device/usr/local/bin/`, which `install.sh` expects to exist;
+  `device/etc/upstart/blanketd.conf` runs it.
 - `install.sh` also changes `early_progress.conf` to stop when `koreader`
   starts. Its stock stop event comes from `langpicker`, which is removed, and
   the boot progress bar would otherwise keep drawing over KOReader.

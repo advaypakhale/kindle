@@ -36,6 +36,8 @@ while read -r l; do
 done < drop-libs.txt
 
 cp etc/upstart/*.conf /etc/upstart/
+cp usr/local/bin/blanketd /usr/local/bin/blanketd
+chmod 755 /usr/local/bin/blanketd
 rm -f /etc/upstart/evlog.conf /etc/upstart/usbms.conf /usr/local/bin/usbms /usr/local/bin/fbink
 
 # lab126 waits for demd, which only feeds Amazon's device metrics.
